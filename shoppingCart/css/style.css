@@ -28,7 +28,7 @@ select {
 				ID's
 *************************************/
 #pageWrapper{
-	 margin: 0 0 50px 0;
+	 margin: 0 0 100px 0;
 }
 #hatContainer {
     height: auto;
@@ -41,7 +41,7 @@ select {
     margin: 0 auto;
 }
 #registerItems {
-    display: block;
+    /*display: block;*/
     height: 200px;
     width: 35%;
     margin: 0 auto;
@@ -50,6 +50,15 @@ select {
 	font-size: 40px;
 	margin: 5px 0;
 }
+#chkoutBtns {
+	padding: 10px;
+    margin: 0 auto;
+    width: 60%;
+}
+
+/*************************************
+				CLASSES
+*************************************/
 .col {
 	/*background-color: #ffffff;*/
 	border: 1px solid #000000;
@@ -58,13 +67,7 @@ select {
     padding: 10px;
     margin: 0 0 30px 0;
 }
-/*.col:nth-child(odd){
-	border-top: 1px solid black;
-}
-.col:nth-child(even){
-	border-bottom: 1px solid black;
-}
-*/
+
 .col h1 {
 	text-align: center;
 }
@@ -73,10 +76,6 @@ select {
     margin: 0 auto;
     height: auto;
 }
-
-/*************************************
-				CLASSES
-*************************************/
 .hatImg {
 	height: 150px;
 	width: 150px;
@@ -95,6 +94,38 @@ select {
 	background-color: #276be1;
 	cursor: pointer;
 }
+.btn--remove {
+	display: block;
+    background-color: #a10505;
+    padding: 6px;
+    color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #666666;
+    margin: 4px 0px 5px;
+}
+.btn--remove:hover {
+	background-color: #eb3939;
+	cursor: pointer;
+}
+.btn--checkout, .btn--cancelCheckout {
+	background-color: #999999;
+	color: #444444;
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-right: -70px;
+    margin-left: 100px;
+
+}
+.btn--checkout:hover, .btn--cancelCheckout:hover {
+	background-color: #c6c6c6;
+} 
+.is-hidden {
+	display: none;
+}
+
 /*************************************************************************
 						MEDIA QUERIES
 *************************************************************************/
