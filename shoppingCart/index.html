@@ -15,7 +15,7 @@
 			<div class="prodSelection">
 				<p class="price-js">Price: $27.99</p>
 				<p>Quantity:</p>
-				<select>
+				<select data-id="id">
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -26,14 +26,14 @@
 				<input class="btn" type="button" name="add" value="Add to cart" />
 				<input class="btn btn--remove" type="button" name="remove" value="Remove" />
 			</div><!--end .prodSelection-->
-		</div><!--end .col-->
+		</div><!--end .col -->
 		<div class="col">
 			<h1>Milwaukee Brewers</h1>
 			<img class="hatImg" src="img/brewersHat2.jpeg" alt="Milwaukee Brewers baseball hat"/>
 			<div class="prodSelection">
 				<p class="price-js">Price: $34.99</p>
 				<p>Quantity:</p>
-				<select>
+				<select data-set="id">
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -44,7 +44,7 @@
 				<input class="btn" type="button" name="add" value="Add to cart" />
 				<input class="btn btn--remove" type="button" name="remove" value="Remove" />
 			</div><!--end .prodSelection-->
-		</div><!--end .col-->
+		</div><!--end .col -->
 		<div class="col">
 			<h1>Kansas City Chiefs</h1>
 			<img class="hatImg" src="img/chiefsHat.jpeg" alt="Kansas City Chiefs baseball hat"/>
@@ -62,7 +62,7 @@
 				<input class="btn" type="button" name="add" value="Add to cart" />
 				<input class="btn btn--remove" type="button" name="remove" value="Remove" />
 			</div><!--end .prodSelection-->
-		</div><!--end .col-->
+		</div><!--end .col -->
 		<div class="col">
 			<h1>Grateful Dead</h1>
 			<img class="hatImg" src="img/deadHat.jpg" alt="Grateful Dead baseball hat"/>
@@ -80,7 +80,7 @@
 				<input class="btn" type="button" name="add" value="Add to cart" />
 				<input class="btn btn--remove" type="button" name="remove" value="Remove" />
 			</div><!--end .prodSelection-->
-		</div><!--end .col-->
+		</div><!--end .col -->
 		<div class="col">
 			<h1>Detroit Tigers</h1>
 			<img class="hatImg" src="img/detroitHat.jpeg" alt="Detroit Tigers baseball hat"/>
@@ -282,8 +282,13 @@
 	</div><!--end #hatContainer-->
 
 	<div id="registerContainer">
-		<div id="registerItems">
-			<p>Number of Items:</p>
+		<div id="chkoutBtns">
+		<input class="btn btn--checkout" type="button" id="checkout" value="Check Out" />
+		<input class="btn btn--cancelCheckout" type="button" id="cancel" value="Cancel" />
+		</div>
+
+		<div class="is-hidden" id="registerItems">
+			<p>Shopping Cart Total:</p>
 			<p id="cartTotal-js"></p><br>
 			<p>Sub Total:</p>
 			<p id="subTotal-js"></p><br>
@@ -298,7 +303,9 @@
 
 
 
-
+<script src="configs/hatconfigs.js"></script>
 <script src="js/script.js"></script>
+
+
 </body><!--end body-->
 </html><!--end html-->
