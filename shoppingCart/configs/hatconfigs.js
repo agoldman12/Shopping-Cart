@@ -154,16 +154,19 @@ function renderMarkup(hatConfig) {
 
 document.addEventListener('change', function(e) {
     // get hat id from e.target.dataset
-    let hatID = e.target.dataset;
+    let selectedHat = e.target.dataset.id;
+
     //loop through all of our hat objects in our config
     hatConfig.forEach(function(hat){
-        if(hat.id == hatID){
-            hat.quantity = dataset.id.value;
-        }
+       if(selectedHat == hat.id){
+         hatConfig.quantity = selectedHat.value;
+         console.log(hat.quantity);
+     }
+    
     });
         // when you find the hat with the id same as hat id from select in step 1 of this function, 
         //update the quantity value with the value of the select
-
-})
+    
+});
  
 
