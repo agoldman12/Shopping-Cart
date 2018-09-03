@@ -1,60 +1,68 @@
 'use strict';
-//this function puts the number of items in the cart in the <p> with the id=cartTotal-js
-let selEltotal = [];
+//this function displays the number of items in the cart.
 function addToCart(){
-	let selEl = document.getElementsByTagName('select');
-	let cartTotalEl = document.getElementById("cartTotal-js");
-	for(var i = 0; i < selEl.length; i++){
-		if(selEl[i].value !== "0"){
-			selEltotal.push(Number(selEl[i].value));
-			let sum = selEltotal.reduce((acc, val)=>{
+	const cartItems = [];
+	const cartTotalEl = document.getElementById('cartTotal-js');
+	hatConfig.forEach(function(hat){
+		if(hat.quantity > 0){
+			cartItems.push(Number(hat.quantity));
+			const sum = cartItems.reduce((acc, val)=>{
 				return acc + val;
 			}, 0);
 			cartTotalEl.innerHTML = " " + sum;
 		}
-	}
-	let hatContainer = document.getElementById('hatContainer');
-	hatContainer.classList.add('is-hidden');
+	});
+}//end of addTocart function
 
-	let registerItems = document.getElementById('registerItems');
-	registerItems.classList.remove('is-hidden');
+//add click listener to button if that hat has been selected
+document.addEventListener('change', function(e){
+    // get hat id from e.target.dataset
+    const selectedHatID = e.target.dataset.id;
+    //get all 'add to cart' buttons
+    const addBtn = document.getElementsByName('add');
+    for(let i = 0; i < addBtn.length; i++){
+        //if selectedHatID equals button id then add click listener
+        if(selectedHatID == addBtn[i].id){
+            addBtn[i].addEventListener('click', addToCart);
+        }
+    }
+});
+
+
+
+//function to calculate total
+function calculateTotal(){
+	//get reference to HTML element where I will output the result of the calculations
+	let subtotalEl = document.getElementById('subTotal-js');
+	let taxEl = document.getElementById('tax-js');
+	let grandTotalEl = document.getElementById('grandTotal-js');
+        let cartItems = [];
+    
+    //loop through all hats and put selected hats into cartItems array.
+    hatConfig.forEach(function(hat){
+		if(hat.quantity > 0){
+			
+			cartItems.push(Number(hat.quantity * hat.price));
+			//reduce cartItems array to one number stored in 'const subtotal'.
+			const subtotal = cartItems.reduce((acc, val)=>{
+				return acc + val;
+			}, 0);
+			
+			//use subtotal for price calculations
+    		let tax_percent = 0.08;
+    		let tax = (subtotal * tax_percent).toFixed(2);
+    		let grandTotal = ((subtotal * tax_percent) + subtotal).toFixed(2);
+
+            //output results into their respective html elements.
+			subtotalEl.innerHTML = "$" + subtotal;
+			taxEl.innerHTML = "$" + tax;
+			grandTotalEl.innerHTML = "$" + grandTotal;
+			
+		}
+
+	});
 }//end of function
 
-//add event listeners to all buttons with the name 'add'
-//run the function 'addToCart' when the button is clicked. 
-const btnEl = document.getElementsByName('add');
-for(var i = 0; i < btnEl.length; i++) {
-	btnEl[i].addEventListener('click', addToCart);
-}
-
-
-//reset page to beginning
-function resetPage(){
-	let hatContainer = document.getElementById('hatContainer');
-    let registerItems = document.getElementById('registerItems');
-    hatContainer.classList.remove('is-hidden');
-    registerItems.classList.add('is-hidden');
-}
-//create cancel button and run 'resetPage' when clicked.
-const cancelBtn = document.getElementById('cancel');
-cancelBtn.addEventListener('click', resetPage);
-
-
-/*hatConfig.forEach(function(hat){
-	if(hat.quantity !== 0){
-
-	}
-
-});
-*/
-
-
-/*
-1. I use a forEach loop to iterate over my array and check the quantity property. 
-How do I get the 'addToCart' function working with this kind of loop?
-
-2. when I loop over the array and check quantity, I set a variable for the 
-subtotal on those hats whose quantity is !== 0. (let subtotal = hat.quantity * hat.price)
-When I output 'subtotal' it only put out the last value of the array instead of adding everything
-together.  Why?
-*/
+//checkout button event listener
+const chkOut_btn = document.getElementById('checkout');
+chkOut_btn.addEventListener('click', calculateTotal);
