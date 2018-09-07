@@ -22,7 +22,7 @@ document.addEventListener('change', function(e){
     const addBtn = document.getElementsByName('add');
     for(let i = 0; i < addBtn.length; i++){
         //if selectedHatID equals button id then add click listener
-        if(selectedHatID == addBtn[i].id){
+        if(selectedHatID === addBtn[i].id){
             addBtn[i].addEventListener('click', addToCart);
         }
     }
@@ -36,13 +36,16 @@ function calculateTotal(){
 	let subtotalEl = document.getElementById('subTotal-js');
 	let taxEl = document.getElementById('tax-js');
 	let grandTotalEl = document.getElementById('grandTotal-js');
-        let cartItems = [];
     
-    //loop through all hats and put selected hats into cartItems array.
+    //array to store (hat.quantity * hat.price) of each selected hat
+    const cartItems = [];
+
+    //loop through all hats 
     hatConfig.forEach(function(hat){
 		if(hat.quantity > 0){
-			
+			//put selected hat quantity * selected hat price into cartItems array.
 			cartItems.push(Number(hat.quantity * hat.price));
+			
 			//reduce cartItems array to one number stored in 'const subtotal'.
 			const subtotal = cartItems.reduce((acc, val)=>{
 				return acc + val;
@@ -57,12 +60,39 @@ function calculateTotal(){
 			subtotalEl.innerHTML = "$" + subtotal;
 			taxEl.innerHTML = "$" + tax;
 			grandTotalEl.innerHTML = "$" + grandTotal;
-			
 		}
-
 	});
-}//end of function
+}//end of calculateTotal function
 
 //checkout button event listener
 const chkOut_btn = document.getElementById('checkout');
 chkOut_btn.addEventListener('click', calculateTotal);
+
+function reset(){
+	//get reference to HTML element where I will output the result of the calculations
+	let subtotalEl = document.getElementById('subTotal-js');
+	let taxEl = document.getElementById('tax-js');
+	let grandTotalEl = document.getElementById('grandTotal-js');
+	const cartTotalEl = document.getElementById('cartTotal-js');
+	const selectEl = document.getElementsByTagName('select');
+    
+    //set the innerHTML of each element back to nothing
+	subtotalEl.innerHTML = " ";
+	taxEl.innerHTML = " ";
+	grandTotalEl.innerHTML = " ";
+	cartTotalEl.innerHTML = " ";
+    
+    //loop through all the select tags and if the value was greater than 0, set it back to 0
+	for(var i = 0; i < selectEl.length; i++){
+		if(selectEl[i].value > 0){
+			selectEl[i].value = 0;
+		}
+	}   
+    
+    //the previous value is still in the reduced array stored in 'sum'. I need to get a copy of
+    //that array and make it available to this function. OR just make it available to start with.
+}
+
+//get reference to reset button and add event listener to run 'reset' function
+const resetbtn = document.getElementById('reset');
+resetbtn.addEventListener('click', reset);
