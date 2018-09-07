@@ -168,10 +168,23 @@ document.addEventListener('change', function(e) {
 
 
 /*
-Question: 
+Questions: 
 1. When I removed the 'renderMarkup' function the hat tiles were inserted using
 'insertAdjacentHTML()', however they were inserted in the reverse order from how they appear in
-the hatConfigs array. I am not sure why that happened.
+the hatConfigs array. I don't know why that happens.
+
+2. I think you said something about initializing all my buttons (for the family guy project).
+is there a way I can set up all the buttons / event listeners in one spot so it's cleaner?
+Right now I every function has a button right below it that has an event listener to run 
+that function.
+
+3. I need to empty out the cartItems array when I hit the 'reset' button. I think I need to 
+copy that array to make it available to the reset function...Not sure how to do this.
+
+4. How can I best name variables? Are there best practices? I'm currently using
+const cartItems = []; in both my addToCart and calculateTotal functions. They do
+the basically same thing (store all selected hats). One stores the quantity and the 
+other stores the quantity * price.
 */
 
 
