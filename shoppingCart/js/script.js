@@ -6,28 +6,16 @@ function addToCart(){
 	hatConfig.forEach(function(hat){
 		if(hat.quantity > 0){
 			cartItems.push(Number(hat.quantity));
-			const sum = cartItems.reduce((acc, val)=>{
-				return acc + val;
-			}, 0);
-			cartTotalEl.innerHTML = " " + sum;
 		}
 	});
+
+	const productTotal = cartItems.reduce((acc, val)=>{
+				return acc + val;
+			}, 0);
+	cartTotalEl.innerHTML = " " + productTotal;
+
+	calculateTotal();
 }//end of addTocart function
-
-//add click listener to button if that hat has been selected
-document.addEventListener('change', function(e){
-    // get hat id from e.target.dataset
-    const selectedHatID = e.target.dataset.id;
-    //get all 'add to cart' buttons
-    const addBtn = document.getElementsByName('add');
-    for(let i = 0; i < addBtn.length; i++){
-        //if selectedHatID equals button id then add click listener
-        if(selectedHatID === addBtn[i].id){
-            addBtn[i].addEventListener('click', addToCart);
-        }
-    }
-});
-
 
 
 //function to calculate total
@@ -43,30 +31,26 @@ function calculateTotal(){
     //loop through all hats 
     hatConfig.forEach(function(hat){
 		if(hat.quantity > 0){
-			//put selected hat quantity * selected hat price into cartItems array.
+			//push selected hat quantity * selected hat price to cartItems array.
 			cartItems.push(Number(hat.quantity * hat.price));
-			
-			//reduce cartItems array to one number stored in 'const subtotal'.
-			const subtotal = cartItems.reduce((acc, val)=>{
-				return acc + val;
-			}, 0);
-			
-			//use subtotal for price calculations
-    		let tax_percent = 0.08;
-    		let tax = (subtotal * tax_percent).toFixed(2);
-    		let grandTotal = ((subtotal * tax_percent) + subtotal).toFixed(2);
-
-            //output results into their respective html elements.
-			subtotalEl.innerHTML = "$" + subtotal;
-			taxEl.innerHTML = "$" + tax;
-			grandTotalEl.innerHTML = "$" + grandTotal;
 		}
 	});
-}//end of calculateTotal function
+	//reduce cartItems array to one number stored in 'const subtotal'.
+	const subtotal = cartItems.reduce((acc, val)=>{
+		return acc + val;
+	}, 0);
+	
+	//use subtotal for price calculations
+	let tax_percent = 0.08;
+	let tax = (subtotal * tax_percent).toFixed(2);
+	let grandTotal = ((subtotal * tax_percent) + subtotal).toFixed(2);
 
-//checkout button event listener
-const chkOut_btn = document.getElementById('checkout');
-chkOut_btn.addEventListener('click', calculateTotal);
+    //output results into their respective html elements.
+	subtotalEl.innerHTML = "$" + subtotal;
+	taxEl.innerHTML = "$" + tax;
+	grandTotalEl.innerHTML = "$" + grandTotal;
+
+}//end of calculateTotal function
 
 function reset(){
 	//get reference to HTML element where I will output the result of the calculations
@@ -76,23 +60,94 @@ function reset(){
 	const cartTotalEl = document.getElementById('cartTotal-js');
 	const selectEl = document.getElementsByTagName('select');
     
-    //set the innerHTML of each element back to nothing
+    //set the innerHTML of each element back to an empty string
 	subtotalEl.innerHTML = " ";
 	taxEl.innerHTML = " ";
 	grandTotalEl.innerHTML = " ";
 	cartTotalEl.innerHTML = " ";
     
-    //loop through all the select tags and if the value was greater than 0, set it back to 0
+    //set select menus back to 0
 	for(var i = 0; i < selectEl.length; i++){
 		if(selectEl[i].value > 0){
 			selectEl[i].value = 0;
 		}
-	}   
-    
-    //the previous value is still in the reduced array stored in 'sum'. I need to get a copy of
-    //that array and make it available to this function. OR just make it available to start with.
-}
+	}
+	//set hat.quantity property back to 0
+	hatConfig.forEach(function(hat){
+		if(hat.quantity > 0){
+			hat.quantity = 0;
+		}
+	});
 
-//get reference to reset button and add event listener to run 'reset' function
-const resetbtn = document.getElementById('reset');
-resetbtn.addEventListener('click', reset);
+	//remove class 'isSelected'
+    const addBtn = document.getElementsByName('add');
+    for(var i = 0; i < addBtn.length; i++){
+        if(addBtn[i].classList.contains('isSelected')){
+            addBtn[i].classList.remove('isSelected');
+        }   
+    }
+}//end of reset function
+
+
+
+
+
+/************************************************************************
+BUTTON FARM - Event listeners for buttons and change events
+*************************************************************************/
+function initButtonListeners(){
+	//addToCart button
+	document.addEventListener('click', function(e) {
+	if(e.target.classList.contains('isSelected')) {
+			addToCart(e);
+		}
+	});
+
+    //reset button
+	const resetbtn = document.getElementById('reset');
+	resetbtn.addEventListener('click', reset);
+
+}//end of initButtonListeners()
+
+
+function initChangeListners(){
+	//event listener and function to update the quantity property of the hat object
+	//according to the value selected with the drop down menu.
+	document.addEventListener('change', function(e) {
+	    // get hat id from e.target.dataset
+	    const selectedHatID = e.target.dataset.id;
+	    //loop through all hat objects in hatConfig array
+	    hatConfig.forEach(function(hat){
+	       //if the id of the select menu matches the id of the hat object
+	       //update the hat quantity with the value of the select menu.
+	       if(selectedHatID === hat.id){
+	         hat.quantity = e.target.value;
+	        }
+	    });
+	    
+	    //get a reference to all buttons with name 'add'
+	    const addBtn = document.getElementsByName('add');
+	    //loop through buttons and add class if selectedHatID === button ID
+	    for(var i = 0; i < addBtn.length; i++){
+	        if(selectedHatID === addBtn[i].id){
+	            addBtn[i].classList.add('isSelected');
+	        } 
+	    }
+	});
+}//end of change()
+
+
+function Init(){
+	initButtonListeners();
+	initChangeListners();
+}
+Init();
+
+/*
+reference to addtocart above - I like this b/c only add the event listener once. I did have to 
+remove the btn class from the 'reset' btn. It was causing the output 
+fields to be populated with $0.00 instead of clearing out when I clicked the
+reset btn. I then added a few of the 'btn' styles to the 'btn--reset' class 
+and that fixed the look of the button and the output fields no longer populate
+with $0.00. It's just empty.
+*/
