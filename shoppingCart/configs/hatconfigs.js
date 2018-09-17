@@ -127,7 +127,7 @@ const hatConfig = [
 //put hat tiles on the page
     hatConfig.forEach(function(hat) {
         const wrapperElement = document.getElementById('hatContainer');
-            wrapperElement.insertAdjacentHTML('afterbegin', `
+            wrapperElement.insertAdjacentHTML('beforeend', `
             <div class="col">
     			<h1>${hat.name}</h1>
     			<img class="hatImg" src="${hat.img}" alt="${hat.alt}"/>
@@ -142,49 +142,10 @@ const hatConfig = [
     					<option value="4">4</option>
     					<option value="5">5</option>
     				</select>
-    				<input class="btn" type="button" id="${hat.id}" name="add" value="Add to cart" />
+    				<input class="btn" type="button" id="${hat.id}" name="add" value="Add to Cart" />
     			</div><!--end .prodSelection-->
     		</div><!--end .col -->
             `)
     });
-
-
-
-//event listener and function to update the quantity property of the hat object
-//according to the value selected with the drop down menu.
-document.addEventListener('change', function(e) {
-    // get hat id from e.target.dataset
-    const selectedHatID = e.target.dataset.id;
-
-    //loop through all of our hat objects in our config
-    hatConfig.forEach(function(hat){
-       //if the id of the select menu matches the id of the hat object
-       //update the hat quantity with the value of the select menu.
-       if(selectedHatID === hat.id){
-         hat.quantity = e.target.value;
-        }
-    });
-});
-
-
-/*
-Questions: 
-1. When I removed the 'renderMarkup' function the hat tiles were inserted using
-'insertAdjacentHTML()', however they were inserted in the reverse order from how they appear in
-the hatConfigs array. I don't know why that happens.
-
-2. I think you said something about initializing all my buttons (for the family guy project).
-is there a way I can set up all the buttons / event listeners in one spot so it's cleaner?
-Right now I every function has a button right below it that has an event listener to run 
-that function.
-
-3. I need to empty out the cartItems array when I hit the 'reset' button. I think I need to 
-copy that array to make it available to the reset function...Not sure how to do this.
-
-4. How can I best name variables? Are there best practices? I'm currently using
-const cartItems = []; in both my addToCart and calculateTotal functions. They do
-the basically same thing (store all selected hats). One stores the quantity and the 
-other stores the quantity * price.
-*/
 
 
