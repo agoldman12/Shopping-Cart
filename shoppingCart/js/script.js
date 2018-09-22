@@ -88,15 +88,6 @@ function reset(){
     }
 }//end of reset function
 
-function copyShippingAddress(){
-	checkbox = document.getElementById('billAndShip');
-	console.log(checkbox);
-	
-}
-
-
-
-
 /************************************************************************
 BUTTON FARM - Event listeners for buttons and change events
 *************************************************************************/
@@ -108,12 +99,12 @@ function initButtonListeners(){
 		}
 	});
 
-    //reset button
-    document.addEventListener('click', function(e){ 
-    	if(e.target.classList.contains('btn--reset')){
-    		reset(e);
-    	}
-    });
+	//reset button
+	document.addEventListener('click', function(e){ 
+		if(e.target.classList.contains('btn--reset')){
+			reset(e);
+		}
+	});
 	
 
 }//end of initButtonListeners()
