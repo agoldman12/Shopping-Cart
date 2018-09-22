@@ -88,6 +88,11 @@ function reset(){
     }
 }//end of reset function
 
+function copyShippingAddress(){
+	checkbox = document.getElementById('billAndShip');
+	console.log(checkbox);
+	
+}
 
 
 
@@ -98,14 +103,18 @@ BUTTON FARM - Event listeners for buttons and change events
 function initButtonListeners(){
 	//addToCart button
 	document.addEventListener('click', function(e) {
-	if(e.target.classList.contains('isSelected')) {
+		if(e.target.classList.contains('isSelected')) {
 			addToCart(e);
 		}
 	});
 
     //reset button
-	const resetbtn = document.getElementById('reset');
-	resetbtn.addEventListener('click', reset);
+    document.addEventListener('click', function(e){ 
+    	if(e.target.classList.contains('btn--reset')){
+    		reset(e);
+    	}
+    });
+	
 
 }//end of initButtonListeners()
 
