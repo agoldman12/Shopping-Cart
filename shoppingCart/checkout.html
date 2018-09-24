@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Check Out</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+	</head>
+		<body>
+			<div id="pageWrapper">
+				<h1 id="paymentTitle">Payment Information</h1>
+				<div id="formContainer">
+					<div id="shipping">
+						<h3>Shipping Address</h3>
+						<form>
+							<label>First Name</label>
+							<input type="text" name="fname" id="Shipfname">
+							<label>Last Name</label>
+							<input type="text" name="lname" id="Shiplname">
+							<label>Address</label>
+							<input type="text" name="address" id="Shipaddress">
+							<label>City</label>
+							<input type="text" name="city" id="Shipcity">
+							<label>State</label>
+							<input type="text" name="state" id="Shipstate">
+							<label>Zip</label>
+							<input type="text" name="zip" id="Shipzip">
+						</form>
+					</div>
+					<div id="billing">
+						<h3>Billing Address</h3>
+						<form>
+							<label>First Name</label>
+							<input type="text" name="fname" id="billfname">
+							<label>Last Name</label>
+							<input type="text" name="lname" id="billlname">
+							<label>Address</label>
+							<input type="text" name="address" id="billaddress">
+							<label>City</label>
+							<input type="text" name="city" id="billcity">
+							<label>State</label>
+							<input type="text" name="state" id="billstate">
+							<label>Zip</label>
+							<input type="text" name="zip" id="billzip">
+						</form>
+					</div>
+					<p>Billing Address is the same as Shipping Address:</p>
+					<input type="checkbox" name="billing" id="billAndShip" />
+					<div id="payment">
+						<h3>payment info</h3>
+						<form>
+							<label>Card #</label>
+							<input type="text" name="cardnum">
+							<label>Ex. month</label>
+							<input type="text" name="lname">
+							<label>Ex. year</label>
+							<input type="text" name="address">
+						</form>
+					</div>
+				</div><!--end #formContainer-->
+			</div><!--end #pageWrapper-->
+
+			
+			<script src="js/checkoutscript.js"></script>
+		</body>
+</html>
