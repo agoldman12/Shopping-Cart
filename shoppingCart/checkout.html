@@ -10,35 +10,35 @@
 				<div id="formContainer">
 					<div id="shipping">
 						<h3>Shipping Address</h3>
-						<form>
-							<label>First Name</label>
+						<form class="js-shipping-form">
+							<label>First Name:</label>
 							<input type="text" name="fname" id="Shipfname">
-							<label>Last Name</label>
+							<label>Last Name:</label>
 							<input type="text" name="lname" id="Shiplname">
-							<label>Address</label>
+							<label>Address:</label>
 							<input type="text" name="address" id="Shipaddress">
-							<label>City</label>
+							<label>City:</label>
 							<input type="text" name="city" id="Shipcity">
-							<label>State</label>
+							<label>State:</label>
 							<input type="text" name="state" id="Shipstate">
-							<label>Zip</label>
+							<label>Zip:</label>
 							<input type="text" name="zip" id="Shipzip">
 						</form>
 					</div>
 					<div id="billing">
 						<h3>Billing Address</h3>
-						<form>
-							<label>First Name</label>
+						<form class="js-billing-form">
+							<label>First Name:</label>
 							<input type="text" name="fname" id="billfname">
-							<label>Last Name</label>
+							<label>Last Name:</label>
 							<input type="text" name="lname" id="billlname">
-							<label>Address</label>
+							<label>Address:</label>
 							<input type="text" name="address" id="billaddress">
-							<label>City</label>
+							<label>City:</label>
 							<input type="text" name="city" id="billcity">
-							<label>State</label>
+							<label>State:</label>
 							<input type="text" name="state" id="billstate">
-							<label>Zip</label>
+							<label>Zip:</label>
 							<input type="text" name="zip" id="billzip">
 						</form>
 					</div>
@@ -46,15 +46,50 @@
 					<input type="checkbox" name="billing" id="billAndShip" />
 					<div id="payment">
 						<h3>payment info</h3>
+							<div id="ccType">
+								<p>Visa</p>
+								<input type="radio" name="ccType">
+								<p>MasterCard</p>
+								<input type="radio" name="ccType">
+								<p>American Express</p>
+								<input type="radio" name="ccType">
+								<p>Discover</p>
+								<input type="radio" name="ccType">
+							</div>
 						<form>
 							<label>Card #</label>
-							<input type="text" name="cardnum">
+							<input type="text" name="cardnum" placeholder="xxxx-xxxx-xxxx-xxxx">
 							<label>Ex. month</label>
-							<input type="text" name="lname">
+							<select>
+								<option value="1">Jan</option>
+								<option value="2">Feb</option>
+								<option value="3">Mar</option>
+								<option value="4">Apr</option>
+								<option value="5">May</option>
+								<option value="6">Jun</option>
+								<option value="7">Jul</option>
+								<option value="8">Aug</option>
+								<option value="9">Sept</option>
+								<option value="10">Oct</option>
+								<option value="11">Nov</option>
+								<option value="12">Dec</option>
+							</select>
 							<label>Ex. year</label>
-							<input type="text" name="address">
+							<select>
+								<option>2018</option>
+								<option>2019</option>
+								<option>2020</option>
+								<option>2021</option>
+								<option>2022</option>
+								<option>2023</option>
+								<option>2024</option>
+								<option>2025</option>
+							</select>
 						</form>
-					</div>
+
+						<input class="btn btn--checkout" name="checkout" type="button" id="checkout" value="Submit" />
+						<input class="btn btn--checkout" name="checkout" type="button" id="cancel" value="Cancel" />
+					</div><!--end #payment-->
 				</div><!--end #formContainer-->
 			</div><!--end #pageWrapper-->
 
