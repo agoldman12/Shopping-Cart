@@ -96,16 +96,15 @@ function initButtonListeners(){
 	document.addEventListener('click', function(e) {
 		if(e.target.classList.contains('isSelected')) {
 			addToCart(e);
-		}
+		}else if(e.target.classList.contains('btn--reset')){
+    		        reset(e);
+    	}
 	});
 
-	//reset button
-	document.addEventListener('click', function(e){ 
-		if(e.target.classList.contains('btn--reset')){
-			reset(e);
-		}
-	});
-	
+	/*reset button
+	let resetbtn = document.getElementById('reset');
+	resetbtn.addEventListener('click', reset);
+	*/
 
 }//end of initButtonListeners()
 
@@ -115,16 +114,29 @@ function initChangeListners(){
 	//according to the value selected with the drop down menu.
 	document.addEventListener('change', function(e) {
 	    // get hat id from e.target.dataset
+	    const cart = [];
 	    const selectedHatID = e.target.dataset.id;
 	    //loop through all hat objects in hatConfig array
 	    hatConfig.forEach(function(hat){
 	       //if the id of the select menu matches the id of the hat object
 	       //update the hat quantity with the value of the select menu.
 	       if(selectedHatID === hat.id){
-	         hat.quantity = e.target.value;
+	          hat.quantity = e.target.value;
+	          cart.push(hat);
 	        }
+	       
 	    });
-	    
+	     
+	    var cartItems = cart.filter(function(hat){
+	    	if(hat.quantity > e.target.value){
+	    		return hat.quantity;
+	    		
+	    	}
+
+	    });
+		console.log(cartItems);
+	   
+
 	    //get a reference to all buttons with name 'add'
 	    const addBtn = document.getElementsByName('add');
 	    //loop through buttons and add class if selectedHatID === button ID
