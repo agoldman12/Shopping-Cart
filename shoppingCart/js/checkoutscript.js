@@ -13,7 +13,7 @@ function getShippingInfo() {
         }
         
     };
-    var result = inputEl.reduce(reducer, initialValue);
+    const result = inputEl.reduce(reducer, initialValue);
     
     console.log(result);
 }//end of getShippingInfo()
