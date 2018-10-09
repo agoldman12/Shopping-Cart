@@ -1,0 +1,124 @@
+	<h1>Payment Information</h1>
+					<div id="shippingAddress">
+						<form>
+							<fieldset>
+								<legend>Shipping Address</legend>
+								<label for="fName">First Name:</label>
+								<input type="text" name="fName">
+								<label for="lName">Last Name:</label>
+								<input type="text" name="lName">
+								<label for="address">Address:</label>
+								<input type="text" name="address">
+								<label for="address2">Address Line 2:</label>
+								<input type="text" name="address2">
+								<label for="city">City:</label>
+								<input type="text" name="city">
+								<label for="state">State:</label>
+								<input type="text" name="state">
+								<label for="zip">Zip:</label>
+								<input type="text" name="zip">
+							</fieldset>
+						</form>
+					</div><!--end #shippingAddress-->
+					<div id="billingAddress">
+						<form>
+							<fieldset>
+								<legend>Billing Address</legend>
+								<label for="fName">First Name:</label>
+								<input type="text" name="fName">
+								<label for="lName">Last Name:</label>
+								<input type="text" name="lName">
+								<label for="address">Address:</label>
+								<input type="text" name="address">
+								<label for="address2">Address Line 2:</label>
+								<input type="text" name="address2">
+								<label for="city">City:</label>
+								<input type="text" name="city">
+								<label for="state">State:</label>
+								<input type="text" name="state">
+								<label for="zip">Zip:</label>
+								<input type="text" name="zip">
+							</fieldset>
+						</form>
+					</div><!--end #billingAddress-->
+					<div id="paymentInfo">
+						<label for="creditcard">Credit Card:</label>
+						<div id="cards">
+							<label>Visa:</label>
+							<input type="radio" name="Visa">
+							<label>MasterCard:</label>
+							<input type="radio" name="MasterCard">
+							<label>American Express:</label>
+							<input type="radio" name="AmericanExpress">
+							<label>Discover:</label>
+							<input type="radio" name="Discover">
+						</div>
+					</div><!--end #paymentInfo-->
+
+
+
+
+
+					#formContainer {
+	display: inline-block;
+	height: auto;
+	width: 100%;
+	border: 1px solid blue;
+	padding: 50px;
+}
+#shippingAddress {
+	float: left;
+	height: auto;
+	width: 50%;
+	margin: 0 auto;
+	border: 1px solid green;
+	
+}
+#billingAddress {
+	float: right;
+	height: auto;
+	width: 50%;
+	margin: 0 auto;
+	border: 1px solid green;
+	
+}
+#paymentInfo{
+	display: inline-block;
+	height: 150px;
+	width: 85%;
+	margin: 0 auto;
+	border:1px solid red;
+}
+#cards {
+	float: left;
+	border: 1px solid orange;
+}
+#cards input{
+	width: 20px;
+}
+#cards label {
+	width: 100px;
+}
+
+fieldset{
+	width: 435px;
+}
+label{
+	float: left;
+	width: 103px;
+	font-size: 16px;
+	margin-right: 25px;
+	text-align: right;
+
+}
+input {
+	text-align: left;
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+    width: 210px;
+    height: 20px;
+}
+legend{
+	font-size: 24px;
+	margin: 15px auto;
+}
