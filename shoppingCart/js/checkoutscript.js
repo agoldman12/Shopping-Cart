@@ -23,33 +23,6 @@ function getShippingInfo() {
     
 }//end of getShippingInfo()
 
-function setBillingInfo() {
-    const shippingInfo = getShippingInfo();
-	
-  if(checkboxEl.checked){
-	  setBillingInputs(shippingInfo);
-  }else{
-    removeBillingInfo();
-  }
-
-}//end of setBillingInfo()
-
-function removeBillingInfo(){
-  //get a reference to the billing form
-    const formEl = document.querySelector('.js-billing-form');
-    if (formEl) {
-      //create an array from the billing form inputs
-      const inputEl = Array.from(formEl.querySelectorAll('input'));
-     
-      //loop through array with forEach to assign the BILLING input value to = an empty string
-      inputEl.forEach(function(inputEl){
-          
-          inputEl.value = " ";
-      });
-      inputEl[0].focus();
-    }
-}//end of removeBillingInfo()
-
 function setBillingInputs(shippingInfo) {
     
     //get a reference to the billing form
@@ -68,7 +41,33 @@ function setBillingInputs(shippingInfo) {
 
 }//end of setBillingInputs() 
 
+function setBillingInfo() {
+    const shippingInfo = getShippingInfo();
+  
+  if(checkboxEl.checked){
+    setBillingInputs(shippingInfo);
+  }else{
+    removeBillingInfo();
+  }
 
+}//end of setBillingInfo() 
 
+function removeBillingInfo(){
+  //get a reference to the billing form
+    const formEl = document.querySelector('.js-billing-form');
+    if (formEl) {
+      //create an array from the billing form inputs
+      const inputEl = Array.from(formEl.querySelectorAll('input'));
+     
+      //loop through array with forEach to assign the BILLING input value to = an empty string
+      inputEl.forEach(function(inputEl){
+          
+          inputEl.value = " ";
+      });
+      inputEl[0].focus();
+    }
+}//end of removeBillingInfo()
+
+//reference to checkbox and event listener
 const checkboxEl = document.getElementById("billAndShip");
 checkboxEl.addEventListener('change', setBillingInfo);
