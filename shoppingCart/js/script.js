@@ -101,11 +101,6 @@ function initButtonListeners(){
     	}
 	});
 
-	/*reset button
-	let resetbtn = document.getElementById('reset');
-	resetbtn.addEventListener('click', reset);
-	*/
-
 }//end of initButtonListeners()
 
 
