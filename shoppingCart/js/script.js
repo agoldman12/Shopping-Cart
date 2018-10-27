@@ -5,15 +5,15 @@ function addToCart(){
 	const cartTotalEl = document.getElementById('cartTotal-js');
 	hatConfig.forEach(function(hat){
 		if(hat.quantity > 0){
-			cartItems.push(Number(hat.quantity));
+			cartItems.push(hat);
 		}
 	});
 
-	const productTotal = cartItems.reduce((acc, val)=>{
-				return acc + val;
+	const productTotal = cartItems.reduce((acc, hat)=>{
+				return acc + Number(hat.quantity);
 			}, 0);
 	cartTotalEl.innerHTML = " " + productTotal;
-
+    
 	calculateTotal();
 }//end of addTocart function
 
@@ -31,13 +31,13 @@ function calculateTotal(){
     //loop through all hats 
     hatConfig.forEach(function(hat){
 		if(hat.quantity > 0){
-			//push selected hat quantity * selected hat price to cartItems array.
-			cartItems.push(Number(hat.quantity * hat.price));
+			//push selected hat to the cartItems array.
+			cartItems.push(hat);
 		}
 	});
 	//reduce cartItems array to one number stored in 'const subtotal'.
-	const subtotal = cartItems.reduce((acc, val)=>{
-		return acc + val;
+	const subtotal = cartItems.reduce((acc, hat)=>{
+		return acc + Number(hat.quantity * hat.price);
 	}, 0);
 	
 	//use subtotal for price calculations
@@ -49,7 +49,7 @@ function calculateTotal(){
 	subtotalEl.innerHTML = "$" + subtotal;
 	taxEl.innerHTML = "$" + tax;
 	grandTotalEl.innerHTML = "$" + grandTotal;
-
+    
 }//end of calculateTotal function
 
 function reset(){
@@ -88,24 +88,18 @@ function reset(){
     }
 }//end of reset function
 
-
-
-
-
 /************************************************************************
 BUTTON FARM - Event listeners for buttons and change events
 *************************************************************************/
 function initButtonListeners(){
-	//addToCart button
+	//addToCart button and reset button
 	document.addEventListener('click', function(e) {
-	if(e.target.classList.contains('isSelected')) {
+		if(e.target.classList.contains('isSelected')) {
 			addToCart(e);
-		}
+		}else if(e.target.classList.contains('btn--reset')){
+    		reset(e);
+    	}
 	});
-
-    //reset button
-	const resetbtn = document.getElementById('reset');
-	resetbtn.addEventListener('click', reset);
 
 }//end of initButtonListeners()
 
@@ -121,10 +115,17 @@ function initChangeListners(){
 	       //if the id of the select menu matches the id of the hat object
 	       //update the hat quantity with the value of the select menu.
 	       if(selectedHatID === hat.id){
-	         hat.quantity = e.target.value;
+	          hat.quantity = e.target.value;
 	        }
+	        /*else if (hat.quantity < e.target.value){
+	        	addToCart();
+	        }
+	        */
+	        /*I feel like I need to store the selected hats somewhere so I can compare their 
+	         value to the current value of the target. Right now the hat.quantity = the target
+	         value. */
 	    });
-	    
+	  
 	    //get a reference to all buttons with name 'add'
 	    const addBtn = document.getElementsByName('add');
 	    //loop through buttons and add class if selectedHatID === button ID
@@ -134,7 +135,7 @@ function initChangeListners(){
 	        } 
 	    }
 	});
-}//end of change()
+}//end of initChangeListners()
 
 
 function Init(){
@@ -151,3 +152,4 @@ reset btn. I then added a few of the 'btn' styles to the 'btn--reset' class
 and that fixed the look of the button and the output fields no longer populate
 with $0.00. It's just empty.
 */
+
