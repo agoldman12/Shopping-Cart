@@ -3,17 +3,28 @@
 function addToCart(){
 	const cartItems = [];
 	const cartTotalEl = document.getElementById('cartTotal-js');
+	
 	hatConfig.forEach(function(hat){
 		if(hat.quantity > 0){
 			cartItems.push(hat);
 		}
 	});
-
+    
 	const productTotal = cartItems.reduce((acc, hat)=>{
 				return acc + Number(hat.quantity);
 			}, 0);
-	cartTotalEl.innerHTML = " " + productTotal;
+	
+	cartTotalEl.innerHTML = productTotal;
     
+	/*put selected hats into a list on the page
+	cartItems.forEach(function(hat){
+		const listContainer = document.getElementById('cartList');
+		listContainer.insertAdjacentHTML('beforeend', `
+			<li>${hat.name} ${hat.quantity}</li>
+			`)
+	});
+    */
+
 	calculateTotal();
 }//end of addTocart function
 
